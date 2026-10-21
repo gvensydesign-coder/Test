@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Design Hire-Readiness Test 2026 | Gvensy</title>
+
+<meta property="og:title" content="Design Hire-Readiness Test 2026">
+<meta property="og:description" content="Узнай свой грейд, зарплатную вилку и подходящую вакансию в 2026 году.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://gvensy.design/preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f7f7;
+    --surface-2: #f0f0f0;
+    --border: #e5e5e5;
+    --text: #111111;
+    --text-2: #5f5f5f;
+    --text-3: #9a9a9a;
+    --accent: #fc473c;
+    --accent-soft: rgba(252, 71, 60, 0.07);
+    --accent-border: rgba(252, 71, 60, 0.25);
+    --radius: 14px;
+    --green: #10b981;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  #confetti-canvas {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+  }
+
+  #app {
+    max-width: 700px; margin: 0 auto; padding: 56px 24px 96px;
+    min-height: 100vh; position: relative; display: flex; flex-direction: column;
+  }
+
+  /* ---------- TRANSITION WRAPPERS ---------- */
+  .screen-wrap {
+    animation: slideInFade .4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    width: 100%; flex: 1; display: flex; flex-direction: column;
+  }
+  .screen-wrap.exiting { animation: slideOutFade .3s ease-in forwards; }
+
+  /* ---------- INTRO ---------- */
+  .intro {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; flex: 1; padding-top: 20px;
+  }
+
+  .brand-name {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 32px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 5.5vw, 46px); line-height: 1.15;
+    font-weight: 800; letter-spacing: -0.025em; margin-bottom: 20px; max-width: 620px;
+  }
+
+  .h1-line-2 { display: block; }
+  .accent { color: var(--accent); }
+
+  .intro-sub {
+    font-size: 16px; color: var(--text-2); max-width: 520px;
+    line-height: 1.65; margin-bottom: 32px;
+  }
+
+  /* --- STATS WIDGET --- */
+  .stats-widget {
+    width: 100%; max-width: 560px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; margin-bottom: 32px; text-align: left;
+  }
+  .stats-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .stats-sub { font-size: 12px; color: var(--text-3); margin-bottom: 20px; }
+  .stats-row { display: flex; gap: 16px; margin-bottom: 12px; align-items: center; }
+  .stats-label { font-size: 12px; font-weight: 600; width: 60px; color: var(--text-2); }
+  .stats-bar-container { flex: 1; display: flex; height: 24px; border-radius: 6px; overflow: hidden; position: relative; }
+  .stats-segment { height: 100%; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #fff; overflow: hidden; white-space: nowrap; }
+  .seg-junior { background: #9ca3af; }
+  .seg-middle { background: #60a5fa; }
+  .seg-senior { background: #a78bfa; }
+  .seg-lead { background: #fbbf24; }
+  .stats-legend { display: flex; gap: 12px; justify-content: flex-start; margin-top: 16px; font-size: 11px; color: var(--text-2); flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+  .intro-note { font-size: 13px; color: var(--text-3); margin-top: 16px; line-height: 1.55; max-width: 440px; }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 28px; border-radius: 12px; border: none; background: var(--text);
+    color: #fff; font-family: inherit; font-weight: 600; font-size: 15px;
+    cursor: pointer; transition: transform .18s ease, background .18s ease, opacity .18s ease;
+    letter-spacing: -0.01em; text-decoration: none;
+  }
+
+  .btn:hover:not(:disabled) { transform: translateY(-1px); background: #2a2a2a; }
+  .btn:active:not(:disabled) { transform: translateY(0); }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .btn-accent { background: var(--accent); }
+  .btn-accent:hover:not(:disabled) { background: #e03a30; }
+  .btn-lg { padding: 16px 36px; font-size: 16px; }
+  .btn-ghost { background: none; border: none; color: var(--text-2); font-family: inherit; font-size: 14px; cursor: pointer; padding: 8px 12px; border-radius: 8px; transition: background .18s ease, color .18s ease; }
+  .btn-ghost:hover { background: var(--surface); color: var(--text); }
+  .btn-outline { background: var(--bg); border: 1px solid var(--border); color: var(--text); }
+  .btn-outline:hover:not(:disabled) { background: var(--surface); border-color: var(--text-3); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz { display: flex; flex-direction: column; flex: 1; }
+  .progress-track { height: 4px; background: var(--surface-2); border-radius: 999px; overflow: hidden; margin-bottom: 18px; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width .4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .meta { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-3); margin-bottom: 24px; gap: 12px; }
+  .block-tag { font-size: 11px; color: var(--text-2); background: var(--surface); padding: 4px 10px; border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55%; border: 1px solid var(--border); }
+  .q-text { font-size: clamp(20px, 3.5vw, 24px); font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; margin-bottom: 20px; }
+  .q-hint { font-size: 13px; color: var(--text-3); margin-top: -12px; margin-bottom: 18px; line-height: 1.5; }
+  .q-hint strong { color: var(--accent); font-weight: 600; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  
+  .option {
+    display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border-radius: var(--radius);
+    background: var(--bg); border: 1px solid var(--border); cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, transform .1s ease;
+    text-align: left; width: 100%; color: var(--text); font-family: inherit; font-size: 15px; line-height: 1.5;
+    scroll-margin-top: 100px; 
+  }
+  .option:hover { border-color: var(--text-3); background: #fafafa; }
+  .option:active { transform: scale(0.99); }
+  .option.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .opt-letter { flex-shrink: 0; width: 26px; height: 26px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--text-2); transition: all .18s ease; }
+  .option.selected .opt-letter { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .opt-text { padding-top: 2px; }
+  .option .opt-check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--border); display: grid; place-items: center; margin-top: 3px; transition: all .18s ease; font-size: 11px; color: transparent; }
+  .option.selected .opt-check { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ---------- SKILLS GRID ---------- */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .skill-chip {
+    display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: var(--bg); cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, transform .15s ease;
+    text-align: left; font-family: inherit; font-size: 14px; line-height: 1.4;
+    color: var(--text); min-height: 56px; scroll-margin-top: 100px;
+  }
+  .skill-chip:hover { border-color: var(--text-3); background: #fafafa; }
+  .skill-chip:active { transform: scale(0.98); }
+  .skill-chip.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .skill-badge { flex-shrink: 0; width: 24px; height: 24px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); display: grid; place-items: center; font-size: 11px; font-weight: 700; color: transparent; transition: all .18s ease; }
+  .skill-chip.selected .skill-badge { background: var(--accent); border-color: var(--accent); color: #fff; animation: badgePop .3s cubic-bezier(.34,1.56,.64,1); }
+  @keyframes badgePop { 0% { transform: scale(0.5); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+  .skill-count { display: inline-block; font-size: 12px; color: var(--text-3); margin-top: 8px; }
+  .skill-count strong { color: var(--accent); font-weight: 700; }
+
+  /* ---------- SLIDER ---------- */
+  .slider-wrap { padding: 4px 0 8px; }
+  .slider-value-display { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 24px; font-variant-numeric: tabular-nums; color: var(--text); }
+  .slider-value-display .percent { font-size: 24px; color: var(--text-3); margin-left: 2px; font-weight: 600; }
+  input[type="range"].slider {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px;
+    background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--slider-pct, 50%), var(--surface-2) var(--slider-pct, 50%), var(--surface-2) 100%);
+    outline: none; cursor: pointer; transition: background .15s ease;
+  }
+  input[type="range"].slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent); cursor: grab; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform .15s ease;
+  }
+  input[type="range"].slider::-webkit-slider-thumb:hover { transform: scale(1.1); }
+  .slider-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-3); margin-top: 16px; gap: 12px; }
+  .q-footer { margin-top: auto; padding-top: 32px; min-height: 36px; display: flex; align-items: center; gap: 12px; }
+  .q-footer .btn { margin-left: auto; }
+
+  /* ---------- TEASER SCREEN ---------- */
+  .teaser {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; flex: 1; padding-top: 20px;
+  }
+  .teaser-icon {
+    width: 80px; height: 80px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-size: 40px; margin-bottom: 24px;
+    animation: scaleIn .6s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
+
+  /* ---------- PRESENTATION SLIDES ---------- */
+  .presentation-wrapper {
+    position: relative; width: 100%; max-width: 600px; margin: 0 auto;
+    flex: 1; display: flex; flex-direction: column; overflow: hidden;
+    min-height: 70vh;
+  }
+
+  .slides-container {
+    position: relative; flex: 1; width: 100%; overflow: hidden;
+  }
+
+  .slide {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; visibility: hidden; transform: translateX(40px);
+    transition: opacity .4s ease, transform .4s cubic-bezier(0.16, 1, 0.3, 1), visibility .4s;
+    overflow-y: auto; padding-bottom: 20px; scrollbar-width: none;
+  }
+  .slide::-webkit-scrollbar { display: none; }
+  
+  .slide.active { opacity: 1; visibility: visible; transform: translateX(0); z-index: 2; }
+  .slide.prev { opacity: 0; visibility: hidden; transform: translateX(-40px); }
+
+  /* Slide Navigation */
+  .slide-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);
+  }
+  .slide-dots { display: flex; gap: 8px; }
+  .slide-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-2); transition: all .3s; cursor: pointer; }
+  .slide-dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+  .slide-arrows { display: flex; gap: 12px; }
+  .slide-arrow {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg);
+    display: grid; place-items: center; cursor: pointer; transition: all .18s; color: var(--text);
+  }
+  .slide-arrow:hover:not(:disabled) { background: var(--surface); border-color: var(--text-3); }
+  .slide-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* Slide Content Styles */
+  .slide-title { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); font-weight: 700; margin-bottom: 12px; text-align: center; }
+  
+  .hero-score { text-align: center; margin-bottom: 24px; }
+  .score-num { font-size: clamp(72px, 16vw, 110px); font-weight: 800; line-height: .85; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; color: var(--text); }
+  .score-max { font-size: 24px; color: var(--text-3); font-weight: 600; letter-spacing: -0.01em; display: inline-block; margin-left: 4px; }
+  
+  .grade-badge { display: inline-block; font-size: 16px; font-weight: 700; padding: 8px 24px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border); margin-bottom: 16px; }
+  .grade-tagline { font-size: 16px; color: var(--text-2); line-height: 1.5; font-weight: 500; max-width: 400px; margin: 0 auto; text-align: center; }
+
+  .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 12px; }
+  .card h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); font-weight: 600; margin-bottom: 14px; }
+  .card p { font-size: 14.5px; line-height: 1.6; color: var(--text-2); }
+
+  .salary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .salary-item { background: var(--surface); border-radius: 10px; padding: 16px; text-align: center; }
+  .salary-label { display: block; font-size: 11px; color: var(--text-3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .salary-value { display: block; font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; line-height: 1.3; }
+  .salary-note { font-size: 12px !important; color: var(--text-3) !important; line-height: 1.5 !important; text-align: center; }
+
+  .bars { display: flex; flex-direction: column; gap: 16px; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--text-2); gap: 12px; }
+  .bar-label span:last-child { color: var(--text-3); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .bar-track { height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width 1s cubic-bezier(0.16, 1, 0.3, 1); width: 0; }
+
+  .recs, .flags { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .recs li { position: relative; padding-left: 20px; font-size: 14.5px; line-height: 1.55; color: var(--text-2); }
+  .recs li::before { content: ''; position: absolute; left: 2px; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .flags li { position: relative; padding-left: 24px; font-size: 14.5px; line-height: 1.55; color: var(--text-2); }
+  .flags li::before { content: '!'; position: absolute; left: 0; top: 1px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 10px; font-weight: 800; display: grid; place-items: center; }
+
+  .card-warn { border-color: var(--accent-border); background: var(--accent-soft); }
+  .card-warn h3 { color: var(--accent); }
+  .card-insight { border-color: var(--accent-border); background: var(--surface); }
+  .card-insight h3 { color: var(--accent); }
+  .card-next { background: linear-gradient(to right, #ffffff, var(--surface)); border-left: 4px solid var(--accent); }
+
+  .sources { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .sources li { font-size: 13px; line-height: 1.5; color: var(--text-2); padding-left: 16px; position: relative; }
+  .sources li::before { content: '—'; position: absolute; left: 0; color: var(--text-3); }
+  .sources a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-border); transition: border-color .18s; }
+  .sources a:hover { border-color: var(--accent); }
+
+  /* Meme Card */
+  .meme-card { border: 1px solid var(--accent-border); background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(255,255,255,0.6) 100%); padding: 22px 0 22px 24px; overflow: hidden; margin-bottom: 12px; border-radius: var(--radius); }
+  .meme-card h3 { padding-right: 24px; color: var(--accent); margin-bottom: 12px; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; font-weight: 600;}
+  .meme-tabs { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; padding-right: 24px; scrollbar-width: none; }
+  .meme-tabs::-webkit-scrollbar { display: none; }
+  .meme-tab { background: var(--bg); border: 1px solid var(--border); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--text-2); cursor: pointer; white-space: nowrap; transition: all .18s; font-family: inherit; }
+  .meme-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .meme-content { display: flex; flex-direction: column; padding-right: 24px; animation: fadeIn .3s ease; }
+  .meme-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .meme-logo { width: 44px; height: 44px; border-radius: 12px; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .meme-company { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .meme-role { font-size: 13px; color: var(--text-2); }
+  .meme-quote { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 10px; }
+  .meme-desc { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin-bottom: 16px; }
+  .meme-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 8px 16px; border-radius: 8px; background: rgba(252, 71, 60, 0.08); border: 1px solid rgba(252, 71, 60, 0.2); transition: all .18s; align-self: flex-start; }
+  .meme-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .result-actions { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+  .result-actions .btn { flex: 1; max-width: 240px; }
+
+  /* Скрытый контейнер для скачивания */
+  #download-poster { position: absolute; left: -9999px; top: 0; width: 600px; background: #fff; padding: 40px; border-radius: 20px; }
+
+  /* Animations */
+  @keyframes slideInFade { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes slideOutFade { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-20px); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* Mobile Optimization */
+  @media (max-width: 540px) {
+    #app { padding: 32px 16px 64px; }
+    h1 { font-size: 28px; }
+    .intro-sub { font-size: 15px; }
+    .q-text { font-size: 20px; }
+    .brand-name { font-size: 22px; margin-bottom: 24px; }
+    .btn-lg { width: 100%; padding: 16px; }
+    .stats-widget { padding: 16px; }
+    .stats-label { width: 50px; font-size: 11px; }
+    .stats-segment { font-size: 0; }
+    .option { padding: 12px 14px; font-size: 14px; gap: 12px; }
+    .opt-letter { width: 24px; height: 24px; font-size: 11px; }
+    .block-tag { max-width: 50%; font-size: 10px; padding: 3px 8px; }
+    .q-footer { padding-top: 24px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .slider-value-display { font-size: 44px; }
+    
+    .presentation-wrapper { min-height: 80vh; }
+    .salary-grid { grid-template-columns: 1fr; }
+    .result-actions { flex-direction: column; align-items: center; }
+    .result-actions .btn { width: 100%; max-width: none; }
+    .meme-desc { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    
+    .slide { padding-bottom: 40px; justify-content: flex-start; padding-top: 20px; }
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<main id="app"></main>
+<div id="download-poster"></div>
+
+<script>
+const SafeStorage = {
+  get: (key) => { try { return localStorage.getItem(key); } catch(e) { return null; } },
+  set: (key, val) => { try { localStorage.setItem(key, val); } catch(e) {} },
+  remove: (key) => { try { localStorage.removeItem(key); } catch(e) {} }
+};
+
+/* =========================================================
+   ДАННЫЕ (СОКРАЩЕНЫ ДЛЯ ЧИТАБЕЛЬНОСТИ)
+   ========================================================= */
+
+const competencyBlocks = [
+  { name: "Ремесло и визуальное исполнение", max: 20 },
+  { name: "Системное мышление и масштабируемость", max: 16 },
+  { name: "AI-флюентность и современный стек", max: 24 },
+  { name: "Коммуникация и влияние", max: 16 },
+  { name: "Портфолио и позиционирование", max: 16 }
+];
+
+const profileQuestions = [
+  { id: "experience", text: "Сколько лет вы работаете в дизайне?", hint: "Считайте оплачиваемый опыт.", type: "single", options: [ { t: "Меньше 1 года", s: 2 }, { t: "1–3 года", s: 5 }, { t: "3–5 лет", s: 8 }, { t: "5–8 лет", s: 11 }, { t: "8 лет и больше", s: 14 } ] },
+  { id: "sphere", text: "Какое направление для вас основное?", hint: "Выберите то, в котором больше всего сильных кейсов.", type: "single", options: [ { t: "Продуктовый / UX-UI дизайн", s: 6, val: "product" }, { t: "Графический и коммуникационный", s: 4, val: "graphic" }, { t: "Брендинг и айдентика", s: 5, val: "brand" }, { t: "Motion / 3D / анимация", s: 6, val: "motion" }, { t: "Веб-дизайн и лендинги", s: 4, val: "web" }, { t: "Универсал / мультидисциплинарный", s: 5, val: "multi" } ] },
+  { id: "selfGrade", text: "Как вы сами себя позиционируете на рынке?", hint: "Мы сравним вашу самооценку с результатом теста.", type: "single", options: [ { t: "Junior", s: 0, val: "junior" }, { t: "Middle", s: 0, val: "middle" }, { t: "Senior", s: 0, val: "senior" }, { t: "Lead / Head", s: 0, val: "lead" } ] },
+  { id: "tools", text: "Какими инструментами вы владеете уверенно?", hint: "Можно выбрать несколько.", type: "multi", options: [ { t: "Figma", s: 1 }, { t: "Adobe Photoshop", s: 1 }, { t: "Adobe Illustrator", s: 1 }, { t: "After Effects", s: 2 }, { t: "Cinema 4D / Blender", s: 2 }, { t: "Sketch / Framer / Webflow", s: 2 }, { t: "AI-инструменты", s: 2 }, { t: "Прототипирование в коде", s: 3 } ], maxBonus: 10 },
+  { id: "topSkills", text: "Выберите 3 навыка, в которых вы сильнее всего", hint: "Тапните по карточке, чтобы добавить.", type: "top3", options: [ { t: "Визуальное исполнение", s: 2 }, { t: "Продуктовое мышление", s: 4 }, { t: "Системный дизайн", s: 4 }, { t: "Исследования", s: 4 }, { t: "AI-инструменты", s: 4 }, { t: "Прототипирование и код", s: 3 }, { t: "Коммуникация и презентация", s: 3 }, { t: "Стратегия и лидерство", s: 3 }, { t: "Брендинг и айдентика", s: 3 } ] },
+  { id: "research", text: "Какой у вас опыт работы с исследованиями и бизнес-метриками?", hint: "Выберите максимальный уровень.", type: "single", options: [ { t: "Не работал с этим", s: 0 }, { t: "Участвовал", s: 2 }, { t: "Самостоятельно проводил", s: 4 }, { t: "Влиял на стратегию", s: 6 } ] },
+  { id: "confidence", text: "Насколько вы уверены, что пройдёте отбор в компанию мечты прямо сейчас?", hint: "Покажем разрыв между самоощущением и оценкой.", type: "slider", min: 0, max: 100, default: 50 }
+];
+
+const baseCompetencyQuestions = [
+  { block: 0, text: "Как вы принимаете визуальные решения?", options: [ { t: "Опираюсь на вкус.", s: 1 }, { t: "Использую тренды и референсы.", s: 2 }, { t: "Объясняю через иерархию, читаемость, контекст.", s: 3 }, { t: "Строю визуальную систему для разных носителей.", s: 4 } ] },
+  { block: 0, text: "Главный критерий качества артефакта?", options: [ { t: "Понравилось заказчику.", s: 1 }, { t: "Аккуратно и красиво.", s: 2 }, { t: "Решает задачу и выдерживает критику.", s: 3 }, { t: "Работает измеримо: улучшает показатель.", s: 4 } ] },
+  { block: 0, text: "С чего начинаете ключевой макет?", options: [ { t: "Сразу рисую.", s: 1 }, { t: "Смотрю, как у других.", s: 2 }, { t: "Формулирую задачу, аудиторию, ограничения.", s: 3 }, { t: "Проверяю, нужен ли артефакт, предлагаю альтернативу.", s: 4 } ] },
+  { block: 0, text: "Как работаете с деталями?", options: [ { t: "По возможности.", s: 1 }, { t: "Слежу за аккуратностью.", s: 2 }, { t: "Проверяю по чек-листу.", s: 3 }, { t: "Выстраиваю стандарт качества для команды.", s: 4 } ] },
+  { block: 0, text: "Передача в производство?", options: [ { t: "Отдаю файл.", s: 1 }, { t: "Делаю спецификацию.", s: 2 }, { t: "Провожу ревью и довожу до соответствия.", s: 3 }, { t: "Проектирую предсказуемо: токены, edge cases.", s: 4 } ] },
+  { block: 1, text: "Есть дизайн-система, но неидеальна?", options: [ { t: "Игнорирую.", s: 1 }, { t: "Использую как есть.", s: 2 }, { t: "Фиксирую пробелы и предлагаю улучшения.", s: 3 }, { t: "Развиваю систему и масштабирую.", s: 4 } ] },
+  { block: 1, text: "Переиспользование и масштабирование?", options: [ { t: "Каждый раз с нуля.", s: 1 }, { t: "Иногда переиспользую.", s: 2 }, { t: "Осознанно выбираю под контекст.", s: 3 }, { t: "Строю библиотеки и стандарты.", s: 4 } ] },
+  { block: 1, text: "Работа с ограничениями?", options: [ { t: "Не думаю до реализации.", s: 1 }, { t: "Учитываю, когда скажут.", s: 2 }, { t: "Выясняю заранее.", s: 3 }, { t: "Помогаю команде пересмотреть ограничения.", s: 4 } ] },
+  { block: 1, text: "Документация и передача знаний?", options: [ { t: "Не документирую.", s: 1 }, { t: "Если попросят.", s: 2 }, { t: "Веду документацию решений.", s: 3 }, { t: "Выстраиваю процессы документирования.", s: 4 } ] },
+  { block: 2, text: "Использование AI-инструментов?", options: [ { t: "Не использую.", s: 1 }, { t: "Генерирую картинки/тексты.", s: 2 }, { t: "Ускоряю рутину и исследую.", s: 3 }, { t: "Выстроил AI-воркфлоу и автоматизацию.", s: 4 } ] },
+  { block: 2, text: "Формулировка задач для AI?", options: [ { t: "Короткий запрос.", s: 1 }, { t: "Пробую разные запросы.", s: 2 }, { t: "Задаю контекст и критерии качества.", s: 3 }, { t: "Строю переиспользуемые промпт-воркфлоу.", s: 4 } ] },
+  { block: 2, text: "Оценка результата AI?", options: [ { t: "Если выглядит хорошо — беру.", s: 1 }, { t: "Проверяю на ошибки.", s: 2 }, { t: "Проверяю на соответствие бренду и доступности.", s: 3 }, { t: "Оцениваю по четким критериям и рискам.", s: 4 } ] },
+  { block: 2, text: "Галлюцинации и фактические ошибки?", options: [ { t: "Доверяю AI.", s: 1 }, { t: "Поверхностно смотрю.", s: 2 }, { t: "Сверяю факты с надежными источниками.", s: 3 }, { t: "Выстраиваю фактчекинг в команде.", s: 4 } ] },
+  { block: 2, text: "Этические и правовые нормы AI?", options: [ { t: "Не задумываюсь.", s: 1 }, { t: "Стараюсь не грузить NDA.", s: 2 }, { t: "Знаю правила и соблюдаю.", s: 3 }, { t: "Внедряю политики безопасности в команде.", s: 4 } ] },
+  { block: 2, text: "Как AI изменил подход?", options: [ { t: "Никак.", s: 1 }, { t: "Делаю быстрее то же самое.", s: 2 }, { t: "Освобождает время для глубокой работы.", s: 3 }, { t: "Беру больше ответственности.", s: 4 } ] },
+  { block: 3, text: "Защита дизайн-решения перед стейкхолдерами?", options: [ { t: "Надеюсь, что понравится.", s: 1 }, { t: "Объясняю, что это удобно.", s: 2 }, { t: "Связываю с задачей и целью.", s: 3 }, { t: "Выстраиваю нарратив для принятия решения.", s: 4 } ] },
+  { block: 3, text: "Стейкхолдер просит «как у конкурента»?", options: [ { t: "Делаю.", s: 1 }, { t: "Адаптирую.", s: 2 }, { t: "Изучаю задачу конкурента и адаптирую под нас.", s: 3 }, { t: "Помогаю увидеть разницу, предлагаю гипотезу.", s: 4 } ] },
+  { block: 3, text: "Обратная связь и дизайн-критика?", options: [ { t: "Избегаю.", s: 1 }, { t: "Показываю готовое.", s: 2 }, { t: "Приношу на ранних этапах.", s: 3 }, { t: "Запрашиваю структурированно.", s: 4 } ] },
+  { block: 3, text: "Опыт менторства?", options: [ { t: "Нет.", s: 1 }, { t: "Иногда помогаю.", s: 2 }, { t: "Регулярно даю фидбек.", s: 3 }, { t: "Выстраиваю процессы роста.", s: 4 } ] },
+  { block: 4, text: "Что показывает портфолио?", options: [ { t: "Красивые картинки.", s: 1 }, { t: "Работы с описанием.", s: 2 }, { t: "Кейсы: задача → результат.", s: 3 }, { t: "Кейсы с измеримым влиянием.", s: 4 } ] },
+  { block: 4, text: "Адаптация портфолио под вакансию?", options: [ { t: "Одно и то же везде.", s: 1 }, { t: "Меняю порядок работ.", s: 2 }, { t: "Подбираю кейсы под требования.", s: 3 }, { t: "Строю позиционирование под роль.", s: 4 } ] },
+  { block: 4, text: "Формулировка результатов работы?", options: [ { t: "«Сделал дизайн».", s: 1 }, { t: "«Сделал красиво».", s: 2 }, { t: "«Решил задачу X».", s: 3 }, { t: "«Повлиял на метрику Y на Z%».", s: 4 } ] },
+  { block: 4, text: "Выбор вакансий для отклика?", options: [ { t: "Откликаюсь на всё.", s: 1 }, { t: "На знакомые роли.", s: 2 }, { t: "Соотношу навыки с требованиями.", s: 3 }, { t: "Строю стратегию поиска.", s: 4 } ] }
+];
+
+const sphereSpecificQuestions = {
+  product: [ { block: 2, text: "Продуктовая аналитика и A/B тесты?", options: [ { t: "Зона продакта.", s: 1 }, { t: "Смотрю постфактум.", s: 2 }, { t: "Закладываю метрики в гипотезу.", s: 3 }, { t: "Проектирую системы экспериментов.", s: 4 } ] }, { block: 4, text: "Приоритизация фич?", options: [ { t: "Что просят.", s: 1 }, { t: "По списку.", s: 2 }, { t: "По Impact/Effort.", s: 3 }, { t: "Помогаю строить роадмап.", s: 4 } ] } ],
+  graphic: [ { block: 0, text: "Подготовка к печати?", options: [ { t: "Разберутся в типографии.", s: 1 }, { t: "Базовые настройки.", s: 2 }, { t: "Работаю с профилями и вылетами.", s: 3 }, { t: "Стандарты препресса в команде.", s: 4 } ] }, { block: 0, text: "Типографика в сложных макетах?", options: [ { t: "Стандартные шрифты.", s: 1 }, { t: "По референсу.", s: 2 }, { t: "Сложная иерархия и модульная сетка.", s: 3 }, { t: "Кастомные системы.", s: 4 } ] } ],
+  brand: [ { block: 1, text: "Масштабируемая айдентика?", options: [ { t: "Лого и всё.", s: 1 }, { t: "Лого и пара носителей.", s: 2 }, { t: "Полная система и гайдлайн.", s: 3 }, { t: "Гибкая архитектура бренда.", s: 4 } ] }, { block: 0, text: "Тестирование логотипа?", options: [ { t: "На белом фоне.", s: 1 }, { t: "На сайте/визитке.", s: 2 }, { t: "В масштабе и средах.", s: 3 }, { t: "Юзабилити-тесты на запоминаемость.", s: 4 } ] } ],
+  motion: [ { block: 0, text: "Кривые анимации (easing)?", options: [ { t: "Пресеты AE.", s: 1 }, { t: "На глаз.", s: 2 }, { t: "Кастомные кривые под физику.", s: 3 }, { t: "Строю motion guidelines.", s: 4 } ] }, { block: 1, text: "Оптимизация рендера и веса?", options: [ { t: "Максималки.", s: 1 }, { t: "Сжимаю как получится.", s: 2 }, { t: "Чищу топологию и текстуры.", s: 3 }, { t: "Пайплайн оптимизации.", s: 4 } ] } ],
+  web: [ { block: 0, text: "Адаптив и состояния?", options: [ { t: "Десктоп.", s: 1 }, { t: "Мобилка на глаз.", s: 2 }, { t: "Брейкпоинты и все состояния.", s: 3 }, { t: "Fluid-дизайн и токены.", s: 4 } ] }, { block: 1, text: "Спецификации в верстку?", options: [ { t: "Ссылка на Figma.", s: 1 }, { t: "Комментарии размеров.", s: 2 }, { t: "Подробные спеки и edge-cases.", s: 3 }, { t: "Пишу компоненты на HTML/CSS.", s: 4 } ] } ],
+  multi: [ { block: 3, text: "Жонглирование ролями?", options: [ { t: "Беру всё.", s: 1 }, { t: "Что скажут.", s: 2 }, { t: "Осознанно переключаю контекст.", s: 3 }, { t: "Усиливаю команду многорукостью.", s: 4 } ] }, { block: 1, text: "Выбор инструмента?", options: [ { t: "Один и тот же.", s: 1 }, { t: "Который лучше знаю.", s: 2 }, { t: "Оптимальный под задачу.", s: 3 }, { t: "Комбинирую пайплайны.", s: 4 } ] } ]
+};
+
+const memeMatrix = {
+  product: {
+    junior: { corp: { company: "Авито", logo: "🛍️", role: "Младший дизайнер", desc: "Готовы учить и давать реальные задачи на продукте с аудиторией 60+ млн.", link: "https://career.avito.ru/" }, agency: { company: "Red Collar", logo: "🧣", role: "Junior Product Designer", desc: "Быстрый темп, много проектов, прокачка скиллов в агентской среде.", link: "https://redcollar.digital/career" }, startup: { company: "Karma", logo: "🚀", role: "Product Design Intern", desc: "Стартап, где ты сразу начнешь влиять на продукт и быстро растешь.", link: "https://karma.tech/" } },
+    middle: { corp: { company: "Kaspersky", logo: "🛡️", role: "Product Designer (B2B)", desc: "Сложный B2B-продукт требует системного подхода и зрелости.", link: "https://careers.kaspersky.com/" }, agency: { company: "AGIMA", logo: "🦾", role: "Middle Product Designer", desc: "Крупные клиенты, e-commerce, сильная команда и отлаженные процессы.", link: "https://agima.ru/career/" }, startup: { company: "Wandry", logo: "🪄", role: "Product Designer", desc: "Агентство-стартап, где можно влиять на процессы и тестировать гипотезы.", link: "https://wandry.ru/" } },
+    senior: { corp: { company: "Яндекс", logo: "🔍", role: "Ведущий дизайнер в YaOS", desc: "Смотрим на продукт как на систему. Сильный UX, визуал и эксперименты.", link: "https://yandex.ru/jobs/" }, agency: { company: "Divico", logo: "🎯", role: "Senior Product Designer", desc: "Полный цикл, от аналитики до визуала. Высокие требования к качеству.", link: "https://divico.ru/" }, startup: { company: "Stealth", logo: "🕵️", role: "Senior Product Designer", desc: "Строишь продукт с нуля. Максимальная ответственность и влияние.", link: "https://vc.ru/" } },
+    lead: { corp: { company: "Сбер", logo: "🏦", role: "Staff Designer", desc: "Мыслишь на уровне архитектуры продуктов и влияешь на стратегию.", link: "https://rabota.sber.ru/" }, agency: { company: "Студия 17", logo: "1️⃣", role: "Art Director", desc: "Ведёшь проекты от идеи до релиза, управляя командой.", link: "https://studio17.ru/" }, startup: { company: "Ozon", logo: "📦", role: "Head of Design", desc: "Лидируешь дизайн-направление, нанимаешь и строишь команду.", link: "https://job.ozon.ru/" } }
+  },
+  graphic: {
+    junior: { corp: { company: "Студия Лебедева", logo: "✂️", role: "Стажер-дизайнер", desc: "Легендарная школа. Выживет сильнейший. Идеально для прокачки.", link: "https://www.artlebedev.ru/job/" }, agency: { company: "Brandson", logo: "🅱️", role: "Junior Designer", desc: "Много логотипов, айдентики и насмотренности для портфолио.", link: "https://brandson.ru/" }, startup: { company: "Kefir", logo: "🎬", role: "Графический дизайнер", desc: "Динамичная среда, соцсети, реклама, быстрый рост.", link: "https://kefir.studio/" } },
+    middle: { corp: { company: "BBDO", logo: "📢", role: "Middle Art Director", desc: "Большие бюджеты, сложные клиенты и креативные концепции.", link: "https://bbdo.ru/career/" }, agency: { company: "Bureau Gorbunov", logo: "📐", role: "Графический дизайнер", desc: "Строгая типографика, сетки и высокий уровень ремесла.", link: "https://g-bureau.com/" }, startup: { company: "Самокат", logo: "🛴", role: "Graphic Designer", desc: "Создание графики для быстрорастущего сервиса доставки.", link: "https://samokat.ru/" } },
+    senior: { corp: { company: "Ogilvy", logo: "🎨", role: "Senior Art Director", desc: "Задаешь визуальный язык брендов, ведешь за собой команду.", link: "https://www.ogilvy.com/careers" }, agency: { company: "ONY", logo: "🏴", role: "Senior Brand Designer", desc: "Создание айдентики для крупных брендов. Системность и гайдлайны.", link: "https://ony.ru/career" }, startup: { company: "Яндекс", logo: "🔍", role: "Senior Graphic Designer", desc: "Продуктовая графика для сервисов Яндекса.", link: "https://yandex.ru/jobs/" } },
+    lead: { corp: { company: "Сбер Маркетинг", logo: "🏦", role: "Creative Director", desc: "Глобальные рекламные кампании, управление креативным отделом.", link: "https://sbermarketing.ru/" }, agency: { company: "Repina branding", logo: "👑", role: "Art Director", desc: "Строишь бренды с нуля и презентуешь их первым лицам.", link: "https://repina-branding.com/" }, startup: { company: "ВкусВилл", logo: "🥗", role: "Head of Brand Design", desc: "Формирование визуальной экосистемы для сети.", link: "https://vkusvill.ru/" } }
+  },
+  brand: {
+    junior: { corp: { company: "Brandson", logo: "🅱️", role: "Junior Brand Designer", desc: "Много айдентики и насмотренности. Хороший старт.", link: "https://brandson.ru/" }, agency: { company: "Suprematika", logo: "🔺", role: "Junior Designer", desc: "Сильный брендинг с фокусом на смыслы и стратегию.", link: "https://suprematika.ru/career" }, startup: { company: "Tilda", logo: "📐", role: "Brand Designer", desc: "Создание шаблонов и брендинговых решений для клиентов Tilda.", link: "https://tilda.cc/ru/vacancy/" } },
+    middle: { corp: { company: "ONY", logo: "🏴", role: "Middle Brand Designer", desc: "Создание айдентики для крупных брендов. Системность.", link: "https://ony.ru/career" }, agency: { company: "Repina branding", logo: "👑", role: "Brand Designer", desc: "Строишь бренды с нуля и защищаешь их перед клиентом.", link: "https://repina-branding.com/" }, startup: { company: "Ozon", logo: "📦", role: "Brand Designer", desc: "Разработка и поддержка айдентики для маркетплейса.", link: "https://job.ozon.ru/" } },
+    senior: { corp: { company: "Сбер", logo: "🏦", role: "Senior Brand Designer", desc: "Эволюция и контроль огромной экосистемы бренда Сбера.", link: "https://rabota.sber.ru/" }, agency: { company: "Suprematika", logo: "🔺", role: "Senior Brand Designer", desc: "Сложные брендинговые проекты, лидерство в дизайне.", link: "https://suprematika.ru/career" }, startup: { company: "VK", logo: "💬", role: "Lead Brand Designer", desc: "Визуальный язык продуктов экосистемы VK.", link: "https://team.vk.company/" } },
+    lead: { corp: { company: "Яндекс", logo: "🔍", role: "Brand Art Director", desc: "Задаешь вектор развития бренда Яндекса.", link: "https://yandex.ru/jobs/" }, agency: { company: "ONY", logo: "🏴", role: "Creative Director", desc: "Управление креативными командами и крупными брендами.", link: "https://ony.ru/career" }, startup: { company: "Т-Банк", logo: "🟡", role: "Head of Brand", desc: "Стратегия и визуал бренда в одном из крупнейших банков.", link: "https://www.tbank.ru/career/" } }
+  },
+  motion: {
+    junior: { corp: { company: "Kefir", logo: "🎬", role: "Младший моушн-дизайнер", desc: "Динамичная среда, соцсети, реклама. Быстро набьешь руку.", link: "https://kefir.studio/" }, agency: { company: "Avito", logo: "🛍️", role: "Motion Design Intern", desc: "Продуктовая анимация в масштабе, обучение у сильных лидов.", link: "https://career.avito.ru/" }, startup: { company: "Wandry", logo: "🪄", role: "Motion Designer", desc: "Креативные ролики и реклама для разных клиентов.", link: "https://wandry.ru/" } },
+    middle: { corp: { company: "Sila Sveta", logo: "💡", role: "Motion Designer", desc: "Мировые шоу и инсталляции. Проверят вкус и 3D.", link: "https://silasveta.com/careers" }, agency: { company: "Red Collar", logo: "🧣", role: "Motion Designer", desc: "Сложные сайты с анимацией, требующие понимания фронтенда.", link: "https://redcollar.digital/career" }, startup: { company: "Яндекс", logo: "🔍", role: "Motion Designer", desc: "Анимация интерфейсов и рекламных материалов для сервисов.", link: "https://yandex.ru/jobs/" } },
+    senior: { corp: { company: "Сбер Маркетинг", logo: "🏦", role: "Senior Motion Designer", desc: "Глобальные рекламные кампании и стиль движения.", link: "https://sbermarketing.ru/" }, agency: { company: "Avito", logo: "🛍️", role: "Senior Motion Designer", desc: "Микро-интеракции, которые работают на метрики продукта.", link: "https://career.avito.ru/" }, startup: { company: "Ozon", logo: "📦", role: "Lead Motion Designer", desc: "Построение пайплайна анимации для e-commerce.", link: "https://job.ozon.ru/" } },
+    lead: { corp: { company: "VK", logo: "💬", role: "Motion Art Director", desc: "Стиль движения для экосистемы продуктов VK.", link: "https://team.vk.company/" }, agency: { company: "Sila Sveta", logo: "💡", role: "Creative Director", desc: "Креативное лидерство в топовой студии визуальных эффектов.", link: "https://silasveta.com/careers" }, startup: { company: "Т-Банк", logo: "🟡", role: "Head of Motion", desc: "Стандарты анимации для банковских продуктов.", link: "https://www.tbank.ru/career/" } }
+  },
+  web: {
+    junior: { corp: { company: "Tilda", logo: "📐", role: "Дизайнер шаблонов", desc: "Создание красивых лендингов, понимание сеток.", link: "https://tilda.cc/ru/vacancy/" }, agency: { company: "Red Collar", logo: "🧣", role: "Junior Web Designer", desc: "Креативные сайты, обучение сложной верстке.", link: "https://redcollar.digital/career" }, startup: { company: "AGIMA", logo: "🦾", role: "Web Designer", desc: "Корпоративные сайты и интернет-магазины.", link: "https://agima.ru/career/" } },
+    middle: { corp: { company: "Яндекс", logo: "🔍", role: "Web Designer", desc: "Проектирование промо-страниц для сервисов.", link: "https://yandex.ru/jobs/" }, agency: { company: "AGIMA", logo: "🦾", role: "Middle Web Designer", desc: "Фокус на UX, метриках и A/B тестах в крупных проектах.", link: "https://agima.ru/career/" }, startup: { company: "Самокат", logo: "🛴", role: "Web Designer", desc: "Быстрые лендинги и промо для доставки.", link: "https://samokat.ru/" } },
+    senior: { corp: { company: "Сбер", logo: "🏦", role: "Senior Web Designer", desc: "Экосистемные веб-продукты, масштабные задачи.", link: "https://rabota.sber.ru/" }, agency: { company: "Студия 17", logo: "1️⃣", role: "Senior Web Designer", desc: "Ведение крупных digital-проектов от идеи до релиза.", link: "https://studio17.ru/" }, startup: { company: "Ozon", logo: "📦", role: "Senior Web Designer", desc: "Оптимизация конверсии маркетплейса.", link: "https://job.ozon.ru/" } },
+    lead: { corp: { company: "VK", logo: "💬", role: "Art Director (Digital)", desc: "Управление командой веб-дизайнеров и стратегией.", link: "https://team.vk.company/" }, agency: { company: "Red Collar", logo: "🧣", role: "Art Director", desc: "Креативное лидерство в digital-агентстве.", link: "https://redcollar.digital/career" }, startup: { company: "Т-Банк", logo: "🟡", role: "Head of Web Design", desc: "Стандарты веб-разработки в финтехе.", link: "https://www.tbank.ru/career/" } }
+  },
+  multi: {
+    junior: { corp: { company: "Авито", logo: "🛍️", role: "Младший дизайнер", desc: "Разные задачи: от графики до веба.", link: "https://career.avito.ru/" }, agency: { company: "Wandry", logo: "🪄", role: "Дизайнер-универсал", desc: "Закрываешь разные задачи: презентации, веб, графика.", link: "https://wandry.ru/" }, startup: { company: "Фриланс / Kwork", logo: "💼", role: "Разносторонний дизайнер", desc: "Универсальность — твой конек. Много разных задач.", link: "https://kwork.ru/" } },
+    middle: { corp: { company: "Kaspersky", logo: "🛡️", role: "Product Designer", desc: "Сложные B2B-продукты, многогранные задачи.", link: "https://careers.kaspersky.com/" }, agency: { company: "Divico", logo: "🎯", role: "Senior Product Designer", desc: "Применяешь навыки в UX, визуале и аналитике. Полный цикл.", link: "https://divico.ru/" }, startup: { company: "Ozon", logo: "📦", role: "Product Designer", desc: "Быстрый рост, много гипотез, разные направления.", link: "https://job.ozon.ru/" } },
+    senior: { corp: { company: "Сбер", logo: "🏦", role: "Senior Designer", desc: "Масштабные экосистемные проекты.", link: "https://rabota.sber.ru/" }, agency: { company: "AGIMA", logo: "🦾", role: "Lead Designer", desc: "Ведение проектов и команды, разноплановые задачи.", link: "https://agima.ru/career/" }, startup: { company: "Т-Банк", logo: "🟡", role: "Senior Product Designer", desc: "Влияние на финтех-продукты с миллионами юзеров.", link: "https://www.tbank.ru/career/" } },
+    lead: { corp: { company: "Яндекс", logo: "🔍", role: "Head of Design", desc: "Стратегия и управление дизайн-командой.", link: "https://yandex.ru/jobs/" }, agency: { company: "Студия 17", logo: "1️⃣", role: "Art Director", desc: "Управление креативными проектами.", link: "https://studio17.ru/" }, startup: { company: "Стартап (Stealth)", logo: "🚀", role: "Head of Design", desc: "Строишь продукт и процессы с нуля. Максимальная ответственность.", link: "https://vc.ru/" } }
+  }
+};
+
+const salaryData = {
+  product: { label: "Продуктовый / UX-UI", ru: { junior: "60–100 тыс. ₽", middle: "110–180 тыс. ₽", senior: "180–300 тыс. ₽", lead: "300–500 тыс.+ ₽" }, intl: { junior: "$90k–115k", middle: "$115k–165k", senior: "$165k–220k", lead: "$220k–350k+" } },
+  graphic: { label: "Графический / коммуникационный", ru: { junior: "50–80 тыс. ₽", middle: "80–130 тыс. ₽", senior: "130–220 тыс. ₽", lead: "220–350 тыс. ₽" }, intl: { junior: "$45k–65k", middle: "$65k–90k", senior: "$90k–130k", lead: "$130k–180k+" } },
+  brand: { label: "Брендинг / айдентика", ru: { junior: "55–85 тыс. ₽", middle: "85–140 тыс. ₽", senior: "140–230 тыс. ₽", lead: "230–380 тыс. ₽" }, intl: { junior: "$50k–70k", middle: "$70k–100k", senior: "$100k–150k", lead: "$150k–220k+" } },
+  motion: { label: "Motion / 3D / анимация", ru: { junior: "60–100 тыс. ₽", middle: "100–160 тыс. ₽", senior: "160–250 тыс. ₽", lead: "250–400 тыс. ₽" }, intl: { junior: "$70k–100k", middle: "$100k–130k", senior: "$130k–180k", lead: "$180k–250k+" } },
+  web: { label: "Веб-дизайн / лендинги", ru: { junior: "45–75 тыс. ₽", middle: "75–120 тыс. ₽", senior: "120–200 тыс. ₽", lead: "200–350 тыс. ₽" }, intl: { junior: "$40k–60k", middle: "$60k–90k", senior: "$90k–140k", lead: "$140k–200k+" } },
+  multi: { label: "Универсал / мультидисциплинарный", ru: { junior: "55–85 тыс. ₽", middle: "85–140 тыс. ₽", senior: "140–240 тыс. ₽", lead: "240–400 тыс. ₽" }, intl: { junior: "$50k–70k", middle: "$70k–100k", senior: "$100k–150k", lead: "$150k–220k+" } }
+};
+
+const grades = [
+  { min: 0, max: 45, key: "junior", name: "Junior / Junior+", tagline: "База есть, но рынок ждёт доказательств.", desc: "Вы уверенно выполняете задачи в рамках ТЗ, но пока не показываете, как ваша работа влияет на продукт.", recs: ["Соберите 2–3 кейса с контекстом.", "Свяжите артефакт с метрикой.", "Адаптируйте портфолио.", "Используйте AI осознанно."] },
+  { min: 46, max: 66, key: "middle", name: "Middle", tagline: "Самостоятельны, но нужно доказать влияние.", desc: "Вы закрываете задачи самостоятельно. Но middle 2026 = senior 2023: нужно показать системность.", recs: ["Свяжите проект с метрикой.", "Прокачайте системность.", "Встройте AI в процесс.", "Начните менторить джуна."] },
+  { min: 67, max: 85, key: "senior", name: "Senior", tagline: "Вас нанимают за суждение и ответственность.", desc: "Вы влияете на продукт и команду, проектируете системы и принимаете решения.", recs: ["Стройте процессы.", "Работайте на уровне стратегии.", "Развивайте других.", "Инвестируйте в AI-интерфейсы."] },
+  { min: 86, max: 100, key: "lead", name: "Senior+ / Lead", tagline: "Вы задаёте направление.", desc: "Вы — редкий профиль: дизайнер, который строит процессы, растит людей и влияет на стратегию.", recs: ["Спросите: что изменится без вас?", "Стройте систему развития.", "Формируйте стратегию вместе с C-level.", "Инвестируйте в публичность."] }
+];
+
+const redFlags = [
+  "Портфолио показывает только «красивые картинки».",
+  "Резюме не адаптируется под вакансию.",
+  "На вопрос «почему так» ответ «мне нравится».",
+  "AI используется до формулировки задачи.",
+  "Нет кейсов с измеримым результатом."
+];
+
+const sources = [
+  { label: "HireHi — зарплаты UX/UI-дизайнера в 2026", url: "https://hirehi.ru/salary/ux-ui" },
+  { label: "dsgners.ru — анализ вакансий Q3’26", url: "https://dsgners.ru/no_ux_no_money/73643-chto-trebuet-ryinok-ot-graficheskogo-dizaynera-analiz-vakansiy-djunov-midlov-i-senorov" },
+  { label: "Uxcel — Product Designer Salary Guide 2026", url: "https://uxcel.com/blog/product-designer-salary-guide-2026-what-the-market-is-really-paying" }
+];
+
+/* =========================================================
+   ЛОГИКА И СТЕЙТ
+   ========================================================= */
+
+const app = document.getElementById('app');
+let locked = false;
+let state;
+let currentSlide = 0;
+let totalSlides = 0;
+
+function resetState() {
+  state = {
+    screen: 'intro', step: 0,
+    profileAnswers: new Array(profileQuestions.length).fill(null),
+    multiAnswers: profileQuestions.map(q => q.type === 'multi' ? [] : null),
+    topSkills: [], confidence: 50,
+    competencyAnswers: [], dynamicQuestions: []
+  };
+  currentSlide = 0;
+  totalSlides = 0;
+}
+resetState();
+
+const totalSteps = () => profileQuestions.length + baseCompetencyQuestions.length + 2; 
+
+function checkSavedState() {
+  const saved = SafeStorage.get('gvensy_test_progress');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (parsed && parsed.step > 0 && parsed.screen !== 'result' && parsed.screen !== 'teaser' && parsed.screen !== 'presentation' && parsed.dynamicQuestions && parsed.competencyAnswers) {
+        return parsed;
+      }
+    } catch (e) {}
+  }
+  return null;
+}
+
+function saveState() {
+  if (state.screen === 'quiz') {
+    SafeStorage.set('gvensy_test_progress', JSON.stringify(state));
+  }
+}
+
+function buildDynamicQuestions(sphereVal) {
+  let qs = [...baseCompetencyQuestions];
+  if (sphereVal && sphereSpecificQuestions[sphereVal]) {
+    qs = qs.concat(sphereSpecificQuestions[sphereVal]);
+  }
+  state.dynamicQuestions = qs;
+  state.competencyAnswers = new Array(qs.length).fill(null);
+}
+
+function getGrade(percent) {
+  return grades.find(g => percent >= g.min && percent <= g.max) || grades[grades.length - 1];
+}
+
+function getCurrentQuestion() {
+  if (state.step < profileQuestions.length) {
+    return { type: 'profile', q: profileQuestions[state.step], index: state.step };
+  }
+  const compIndex = state.step - profileQuestions.length;
+  return { type: 'competency', q: state.dynamicQuestions[compIndex], index: compIndex };
+}
+
+function updateStatsData(selfGradeVal, actualGradeKey) {
+  let stats = { self: { junior:0, middle:0, senior:0, lead:0 }, actual: { junior:0, middle:0, senior:0, lead:0 }, total: 0 };
+  const baseSelf = { junior: 25, middle: 45, senior: 25, lead: 5 };
+  const baseActual = { junior: 35, middle: 40, senior: 20, lead: 5 };
+  const baseTotal = 100;
+  try { const saved = SafeStorage.get('gvensy_stats'); if (saved) stats = JSON.parse(saved); } catch(e) {}
+  if (stats.total === 0) { stats.self = { ...baseSelf }; stats.actual = { ...baseActual }; stats.total = baseTotal; }
+  if (selfGradeVal && actualGradeKey) { stats.total++; stats.self[selfGradeVal]++; stats.actual[actualGradeKey]++; SafeStorage.set('gvensy_stats', JSON.stringify(stats)); }
+  return stats;
+}
+
+function renderStatsWidget(containerId) {
+  const stats = updateStatsData(null, null);
+  const calcPct = (obj, key) => Math.round((obj[key] / stats.total) * 100) || 0;
+  const sJ = calcPct(stats.self, 'junior'), sM = calcPct(stats.self, 'middle'), sS = calcPct(stats.self, 'senior'), sL = calcPct(stats.self, 'lead');
+  const aJ = calcPct(stats.actual, 'junior'), aM = calcPct(stats.actual, 'middle'), aS = calcPct(stats.actual, 'senior'), aL = calcPct(stats.actual, 'lead');
+
+  const html = `
+    <div class="stats-title"><span>Статистика самооценки</span></div>
+    <div class="stats-sub">Сравнение того, как себя позиционируют дизайнеры, с результатами теста.</div>
+    <div class="stats-row"><div class="stats-label">Считают<br>себя</div><div class="stats-bar-container"><div class="stats-segment seg-junior" style="width: ${sJ}%">${sJ}%</div><div class="stats-segment seg-middle" style="width: ${sM}%">${sM}%</div><div class="stats-segment seg-senior" style="width: ${sS}%">${sS}%</div><div class="stats-segment seg-lead" style="width: ${sL}%">${sL}%</div></div></div>
+    <div class="stats-row"><div class="stats-label">Оказались<br>на деле</div><div class="stats-bar-container"><div class="stats-segment seg-junior" style="width: ${aJ}%">${aJ}%</div><div class="stats-segment seg-middle" style="width: ${aM}%">${aM}%</div><div class="stats-segment seg-senior" style="width: ${aS}%">${aS}%</div><div class="stats-segment seg-lead" style="width: ${aL}%">${aL}%</div></div></div>
+    <div class="stats-legend"><div class="legend-item"><div class="legend-dot seg-junior"></div>Junior</div><div class="legend-item"><div class="legend-dot seg-middle"></div>Middle</div><div class="legend-item"><div class="legend-dot seg-senior"></div>Senior</div><div class="legend-item"><div class="legend-dot seg-lead"></div>Lead</div></div>
+  `;
+  if (containerId) document.getElementById(containerId).innerHTML = html;
+  return html;
+}
+
+function render() {
+  app.innerHTML = '<div class="screen-wrap"></div>';
+  const wrap = app.querySelector('.screen-wrap');
+  if (state.screen === 'intro') renderIntro(wrap);
+  else if (state.screen === 'quiz') renderQuiz(wrap);
+  else if (state.screen === 'teaser') renderTeaser(wrap);
+  else if (state.screen === 'presentation') renderPresentation(wrap);
+}
+
+function transitionTo(callback) {
+  const wrap = app.querySelector('.screen-wrap');
+  if (wrap) {
+    wrap.classList.add('exiting');
+    setTimeout(() => { callback(); }, 250);
+  } else { callback(); }
+}
+
+/* ---------- INTRO ---------- */
+function renderIntro(container) {
+  const saved = checkSavedState();
+  const continueBtnHtml = saved 
+    ? `<button class="btn btn-accent btn-lg" id="continue" style="margin-bottom: 12px;">Продолжить тест (Вопрос ${saved.step + 1}) →</button><button class="btn btn-outline btn-lg" id="startOver" style="margin-bottom: 24px;">Начать заново</button>`
+    : `<button class="btn btn-accent btn-lg" id="start">Начать тест →</button>`;
+
+  container.innerHTML = `
+    <div class="intro">
+      <div class="brand-name">Gvensy</div>
+      <h1>Насколько вы <span class="accent">соответствуете</span> <span class="h1-line-2">требованиям нанимателей?</span></h1>
+      <p class="intro-sub">Профиль, опыт, навыки и адаптивные вопросы под вашу сферу. На выходе — грейд, зарплатная вилка и подходящая вакансия.</p>
+      <div class="stats-widget" id="stats-container"></div>
+      <div style="display:flex; flex-direction:column; width:100%; max-width: 320px; align-items:center;">${continueBtnHtml}</div>
+      <p class="intro-note">Честные ответы важнее «правильных». Данные никуда не отправляются (кроме локальной статистики).</p>
+    </div>
+  `;
+  renderStatsWidget('stats-container');
+
+  if (saved) {
+    document.getElementById('continue').addEventListener('click', () => { state = saved; state.screen = 'quiz'; render(); });
+    document.getElementById('startOver').addEventListener('click', () => { SafeStorage.remove('gvensy_test_progress'); resetState(); render(); });
+  } else {
+    document.getElementById('start').addEventListener('click', () => {
+      resetState();
+      transitionTo(() => { state.screen = 'quiz'; state.step = 0; render(); });
+    });
+  }
+}
+
+/* ---------- QUIZ ---------- */
+function renderQuiz(container) {
+  const current = getCurrentQuestion();
+  const maxSteps = totalSteps();
+  const progress = (state.step / maxSteps) * 100;
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+
+  let blockLabel, qText, qHint, optionsHtml, footerHtml;
+
+  if (current.type === 'profile') {
+    const q = current.q;
+    blockLabel = 'Профиль'; qText = q.text; qHint = q.hint || '';
+    if (q.type === 'multi') {
+      optionsHtml = q.options.map((o, i) => {
+        const selected = (state.multiAnswers[current.index] || []).includes(i);
+        return `<button class="option ${selected ? 'selected' : ''}" data-i="${i}" data-multi="true"><span class="opt-check">✓</span><span class="opt-text">${o.t}</span></button>`;
+      }).join('');
+    } else if (q.type === 'top3') {
+      optionsHtml = `
+        <div class="skills-grid">
+          ${q.options.map((o, i) => {
+            const selected = state.topSkills.includes(i);
+            const pos = selected ? state.topSkills.indexOf(i) + 1 : '';
+            return `<button class="skill-chip ${selected ? 'selected' : ''}" data-i="${i}" data-skill="true"><span class="skill-badge">${pos}</span><span>${o.t}</span></button>`;
+          }).join('')}
+        </div>
+        <span class="skill-count" id="skillCount">Выбрано <strong>${state.topSkills.length}</strong> из 3</span>
+      `;
+    } else if (q.type === 'slider') {
+      const v = state.confidence;
+      optionsHtml = `
+        <div class="slider-wrap">
+          <div class="slider-value-display"><span id="sliderValue">${v}</span><span class="percent">%</span></div>
+          <input type="range" class="slider" id="confidenceSlider" min="${q.min}" max="${q.max}" value="${v}" style="--slider-pct: ${v}%">
+          <div class="slider-labels"><span>Совсем не уверен</span><span>Полностью уверен</span></div>
+        </div>
+      `;
+    } else {
+      optionsHtml = q.options.map((o, i) => `<button class="option ${state.profileAnswers[current.index] === i ? 'selected' : ''}" data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="opt-text">${o.t}</span></button>`).join('');
+    }
+  } else {
+    const q = current.q;
+    blockLabel = competencyBlocks[q.block].name; qText = q.text; qHint = '';
+    optionsHtml = q.options.map((o, i) => `<button class="option ${state.competencyAnswers[current.index] === i ? 'selected' : ''}" data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="opt-text">${o.t}</span></button>`).join('');
+  }
+
+  let showNext = false, nextDisabled = false;
+  if (current.type === 'profile') {
+    const t = current.q.type;
+    if (t === 'multi') { showNext = true; nextDisabled = (state.multiAnswers[current.index] || []).length === 0; }
+    else if (t === 'top3') { showNext = true; nextDisabled = state.topSkills.length !== 3; }
+    else if (t === 'slider') { showNext = true; nextDisabled = false; }
+  }
+
+  footerHtml = `
+    ${state.step > 0 ? '<button class="btn-ghost" id="back">← Назад</button>' : '<span></span>'}
+    ${showNext ? `<button class="btn btn-accent" id="nextStep" ${nextDisabled ? 'disabled' : ''}>Далее →</button>` : ''}
+  `;
+
+  container.innerHTML = `
+    <div class="quiz">
+      <div class="progress-track"><div class="progress-fill" style="width:${Math.min(progress, 100)}%"></div></div>
+      <div class="meta"><span>Вопрос ${state.step + 1} из ${maxSteps}</span><span class="block-tag">${blockLabel}</span></div>
+      <h2 class="q-text">${qText}</h2>
+      ${qHint ? `<p class="q-hint">${qHint}</p>` : ''}
+      <div class="options" id="options">${optionsHtml}</div>
+      <div class="q-footer">${footerHtml}</div>
+    </div>
+  `;
+
+  const selectedNode = app.querySelector('.option.selected, .skill-chip.selected');
+  if (selectedNode) setTimeout(() => { selectedNode.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 50);
+
+  app.querySelectorAll('.option[data-multi="true"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (locked) return;
+      const i = Number(btn.dataset.i);
+      const arr = state.multiAnswers[current.index] || [];
+      if (arr.includes(i)) state.multiAnswers[current.index] = arr.filter(x => x !== i);
+      else state.multiAnswers[current.index] = [...arr, i];
+      btn.classList.toggle('selected');
+      const next = document.getElementById('nextStep');
+      if (next) next.disabled = (state.multiAnswers[current.index] || []).length === 0;
+    });
+  });
+
+  app.querySelectorAll('.option:not([data-multi]):not([data-skill])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (locked) return;
+      locked = true;
+      const i = Number(btn.dataset.i);
+      if (current.type === 'profile') {
+        state.profileAnswers[current.index] = i;
+        if (current.index === 1) buildDynamicQuestions(current.q.options[i].val);
+      } else { state.competencyAnswers[current.index] = i; }
+      app.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      setTimeout(() => { locked = false; transitionTo(advance); }, 220);
+    });
+  });
+
+  app.querySelectorAll('.skill-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = Number(btn.dataset.i);
+      const idx = state.topSkills.indexOf(i);
+      if (idx > -1) state.topSkills.splice(idx, 1);
+      else if (state.topSkills.length < 3) state.topSkills.push(i);
+      else return;
+      app.querySelectorAll('.skill-chip').forEach((b, bi) => {
+        const sel = state.topSkills.includes(bi);
+        b.classList.toggle('selected', sel);
+        b.querySelector('.skill-badge').textContent = sel ? state.topSkills.indexOf(bi) + 1 : '';
+      });
+      const countEl = document.getElementById('skillCount');
+      if (countEl) countEl.innerHTML = `Выбрано <strong>${state.topSkills.length}</strong> из 3`;
+      const next = document.getElementById('nextStep');
+      if (next) next.disabled = state.topSkills.length !== 3;
+    });
+  });
+
+  const slider = document.getElementById('confidenceSlider');
+  if (slider) slider.addEventListener('input', (e) => {
+    const val = Number(e.target.value);
+    state.confidence = val;
+    document.getElementById('sliderValue').textContent = val;
+    slider.style.setProperty('--slider-pct', val + '%');
+  });
+
+  const next = document.getElementById('nextStep');
+  if (next) next.addEventListener('click', () => { if (!locked && !next.disabled) { locked = true; setTimeout(() => { locked = false; transitionTo(advance); }, 100); } });
+  const back = document.getElementById('back');
+  if (back) back.addEventListener('click', () => { if (!locked) { transitionTo(() => { state.step--; render(); }); } });
+}
+
+function advance() {
+  saveState();
+  if (state.step < totalSteps() - 1) { 
+    state.step++; render(); 
+  } else { 
+    state.screen = 'teaser'; 
+    SafeStorage.remove('gvensy_test_progress');
+    render(); 
+  }
+}
+
+/* ---------- TEASER ---------- */
+function renderTeaser(container) {
+  container.innerHTML = `
+    <div class="teaser">
+      <div class="teaser-icon">✓</div>
+      <h1 style="margin-bottom: 16px;">Тест пройден!</h1>
+      <p class="intro-sub" style="margin-bottom: 40px;">Мы проанализировали ваши ответы, сверили их с требованиями рынка 2026 года и подготовили персональную презентацию.</p>
+      <button class="btn btn-accent btn-lg" id="showResult">Посмотреть итог →</button>
+    </div>
+  `;
+  document.getElementById('showResult').addEventListener('click', () => {
+    transitionTo(() => {
+      state.screen = 'presentation';
+      currentSlide = 0;
+      render();
+    });
+  });
+}
+
+/* ---------- PRESENTATION ---------- */
+function renderPresentation(container) {
+  // 1. Расчет данных
+  const compScore = state.competencyAnswers.reduce((sum, a, idx) => sum + (a === null ? 0 : state.dynamicQuestions[idx].options[a].s), 0);
+  let profileScore = 0;
+  if (state.profileAnswers[0] !== null) profileScore += profileQuestions[0].options[state.profileAnswers[0]].s;
+  if (state.profileAnswers[1] !== null) profileScore += profileQuestions[1].options[state.profileAnswers[1]].s;
+  const toolAnswers = state.multiAnswers[3] || [];
+  let toolRaw = 0;
+  toolAnswers.forEach(i => { toolRaw += profileQuestions[3].options[i].s; });
+  profileScore += Math.min(toolRaw, profileQuestions[3].maxBonus);
+  state.topSkills.forEach(i => { profileScore += profileQuestions[4].options[i].s; });
+  if (state.profileAnswers[5] !== null) profileScore += profileQuestions[5].options[state.profileAnswers[5]].s;
+
+  const rawTotal = compScore + profileScore;
+  const maxPossibleScore = 140; 
+  const percentTotal = Math.round((rawTotal / maxPossibleScore) * 100);
+  
+  const grade = getGrade(percentTotal);
+  const sphereIndex = state.profileAnswers[1];
+  const sphereKey = sphereIndex !== null ? profileQuestions[1].options[sphereIndex].val : 'multi';
+  const selfGradeIdx = state.profileAnswers[2];
+  const selfGradeKey = selfGradeIdx !== null ? profileQuestions[2].options[selfGradeIdx].val : null;
+
+  updateStatsData(selfGradeKey, grade.key);
+
+  const salary = salaryData[sphereKey] || salaryData.multi;
+  const matchMatrix = memeMatrix[sphereKey]?.[grade.key] || memeMatrix.multi.middle;
+
+  const blockScores = competencyBlocks.map((b, bi) => {
+    let s = 0;
+    state.dynamicQuestions.forEach((q, qi) => { if (q.block === bi && state.competencyAnswers[qi] !== null) s += q.options[state.competencyAnswers[qi]].s; });
+    return s;
+  });
+
+  const gradeIndex = grades.findIndex(g => g.key === grade.key);
+  const nextGrade = grades[gradeIndex + 1];
+  let nextHtml = '';
+  let pointsToNext = 0;
+  let weakestBlockName = '';
+  if (nextGrade) {
+    pointsToNext = Math.ceil((nextGrade.min / 100) * maxPossibleScore) - rawTotal;
+    let weakestBlockIdx = 0;
+    let lowestRatio = 1;
+    blockScores.forEach((s, i) => {
+      const max = Math.max(competencyBlocks[i].max, 4);
+      const ratio = s / max;
+      if (ratio < lowestRatio) { lowestRatio = ratio; weakestBlockIdx = i; }
+    });
+    weakestBlockName = competencyBlocks[weakestBlockIdx].name;
+  }
+
+  const pickedSkills = state.topSkills.map(i => profileQuestions[4].options[i].t);
+  const insight = getConfidenceInsight(grade.key, state.confidence);
+
+  // 2. Слайды
+  totalSlides = 6;
+
+  // Генерируем контент слайдов
+  const slide1 = `
+    <div class="slide-title">Твой уровень</div>
+    <div class="hero-score">
+      <span class="score-num" id="scoreDisplay">0</span><span class="score-max">/ 100</span>
+    </div>
+    <div style="text-align:center;">
+      <div class="grade-badge">${grade.name}</div>
+      <p class="grade-tagline">${grade.tagline}</p>
+    </div>
+    <div class="card" style="margin-top:32px;">
+      <h3>Что это значит</h3>
+      <p>${grade.desc}</p>
+    </div>
+    ${insight ? `<div class="card card-insight"><h3>${insight.label}</h3><p>${insight.text}</p></div>` : ''}
+  `;
+
+  const slide2 = `
+    <div class="slide-title">Ориентир по рынку</div>
+    <h2 style="text-align:center; margin-bottom: 24px; font-size: 20px;">${salary.label}</h2>
+    <div class="salary-grid">
+      <div class="salary-item"><span class="salary-label">Россия / СНГ</span><span class="salary-value">${salary.ru[grade.key]}</span></div>
+      <div class="salary-item"><span class="salary-label">Международный</span><span class="salary-value">${salary.intl[grade.key]}</span></div>
+    </div>
+    <p class="salary-note" style="margin-bottom: 24px;">Вилка зависит от города, формата работы и портфолио.</p>
+    
+    <div class="card card-next">
+      <h3>Что дальше?</h3>
+      ${nextGrade ? `<p>До грейда <strong>${nextGrade.name}</strong> не хватает <strong>${pointsToNext} баллов</strong>. Чтобы их набрать, обратите внимание на блок «<strong>${weakestBlockName}</strong>».</p>` : `<p>Вы достигли максимального грейда в этой шкале. Пора масштабировать влияние на бизнес и команду.</p>`}
+    </div>
+  `;
+
+  const slide3 = `
+    <div class="slide-title">Идеальный матч</div>
+    <h2 style="text-align:center; margin-bottom: 16px; font-size: 20px;">Куда тебе стоит откликнуться</h2>
+    
+    <div class="meme-card">
+      <div class="meme-tabs" id="memeTabs">
+        <button class="meme-tab active" data-type="corp">🏢 Корпорация</button>
+        <button class="meme-tab" data-type="agency">🎨 Агентство</button>
+        <button class="meme-tab" data-type="startup">🚀 Стартап</button>
+      </div>
+      <div class="meme-content" id="memeContent"></div>
+    </div>
+  `;
+
+  const slide4 = `
+    <div class="slide-title">Твой профиль навыков</div>
+    <div class="card" style="margin-bottom: 24px;">
+      <h3>Разбивка по блокам</h3>
+      <div class="bars">
+        ${competencyBlocks.map((b, i) => {
+          const s = blockScores[i];
+          const maxForBlock = Math.max(b.max, 4); 
+          const bp = Math.round((s / maxForBlock) * 100);
+          return `
+            <div class="bar-row">
+              <div class="bar-label"><span>${b.name}</span><span>${s} / ${b.max}</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:${Math.min(bp, 100)}%"></div></div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <h3>Как сложился балл</h3>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label"><span>Компетенции и сфера</span><span>${compScore} / 92</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(compScore/92*100)}%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Профиль: опыт, навыки</span><span>${profileScore} / 48</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(profileScore/48*100)}%"></div></div>
+        </div>
+      </div>
+      ${pickedSkills.length ? `<p class="salary-note" style="margin-top:14px">Ваши сильные навыки: ${pickedSkills.join(' · ')}</p>` : ''}
+    </div>
+  `;
+
+  const slide5 = `
+    <div class="slide-title">Аудит кандидата</div>
+    <div class="card" style="margin-bottom: 16px;">
+      <h3>Что усилит вашу позицию</h3>
+      <ul class="recs">${grade.recs.map(r => `<li>${r}</li>`).join('')}</ul>
+    </div>
+    <div class="card card-warn">
+      <h3>Красные флаги для нанимателя</h3>
+      <ul class="flags">${redFlags.map(f => `<li>${f}</li>`).join('')}</ul>
+    </div>
+  `;
+
+  const slide6 = `
+    <div class="slide-title">Готово!</div>
+    <h2 style="text-align:center; margin-bottom: 24px; font-size: 24px;">Твой результат готов</h2>
+    <div class="card">
+      <h3>Источники и вакансии</h3>
+      <ul class="sources">${sources.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label}</a></li>`).join('')}</ul>
+    </div>
+    
+    <div class="result-actions">
+      <button class="btn btn-outline" id="downloadBtn">📸 Скачать</button>
+      <button class="btn btn-accent" id="shareBtn">🔗 Поделиться</button>
+    </div>
+    
+    <button class="btn btn-ghost" id="restartBtn" style="margin: 24px auto 0; display: block;">Пройти заново</button>
+  `;
+
+  const slidesHtml = [slide1, slide2, slide3, slide4, slide5, slide6];
+
+  // Рендер
+  container.innerHTML = `
+    <div class="presentation-wrapper">
+      <div class="slides-container" id="slidesContainer">
+        ${slidesHtml.map((html, i) => `<div class="slide ${i === 0 ? 'active' : ''}" data-index="${i}">${html}</div>`).join('')}
+      </div>
+      
+      <div class="slide-nav">
+        <div class="slide-dots" id="slideDots">
+          ${slidesHtml.map((_, i) => `<div class="slide-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join('')}
+        </div>
+        <div class="slide-arrows">
+          <button class="slide-arrow" id="prevSlide" disabled>←</button>
+          <button class="slide-arrow" id="nextSlide">→</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Анимация первой цифры
+  setTimeout(() => {
+    animateNumber(document.getElementById('scoreDisplay'), percentTotal);
+    // Запускаем конфетти при первом показе
+    const scoreEl = document.getElementById('scoreDisplay');
+    if (scoreEl) {
+      const rect = scoreEl.getBoundingClientRect();
+      launchConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+  }, 100);
+
+  // Логика табов вакансий (Slide 3)
+  function renderMemeContent(type) {
+    const data = matchMatrix[type];
+    document.getElementById('memeContent').innerHTML = `
+      <div class="meme-header">
+        <div class="meme-logo">${data.logo}</div>
+        <div>
+          <div class="meme-company">${data.company}</div>
+          <div class="meme-role">${data.role}</div>
+        </div>
+      </div>
+      <div class="meme-quote">Ты бы отлично подошел в ${data.company}!</div>
+      <p class="meme-desc">${data.desc}</p>
+      <a href="${data.link}" target="_blank" rel="noopener" class="meme-link">Перейти в карьерный раздел →</a>
+    `;
+  }
+  renderMemeContent('corp');
+  document.querySelectorAll('.meme-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      document.querySelectorAll('.meme-tab').forEach(t => t.classList.remove('active'));
+      e.target.classList.add('active');
+      renderMemeContent(e.target.dataset.type);
+    });
+  });
+
+  // Навигация
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.slide-dot');
+  const btnPrev = document.getElementById('prevSlide');
+  const btnNext = document.getElementById('nextSlide');
+  const containerEl = document.getElementById('slidesContainer');
+
+  function goToSlide(index) {
+    if (index < 0 || index >= totalSlides) return;
+    
+    // Сбрасываем предыдущий
+    slides[currentSlide].classList.remove('active');
+    slides[currentSlide].classList.add('prev');
+    dots[currentSlide].classList.remove('active');
+
+    // Устанавливаем новый
+    currentSlide = index;
+    slides[currentSlide].classList.remove('prev');
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+
+    // Кнопки
+    btnPrev.disabled = currentSlide === 0;
+    btnNext.disabled = currentSlide === totalSlides - 1;
+
+    // Скролл в начало слайда (если он длинный)
+    containerEl.scrollTop = 0;
+    slides[currentSlide].scrollTop = 0;
+  }
+
+  btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+  btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+
+  // Свайпы для мобилок
+  let touchStartX = 0;
+  containerEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+  containerEl.addEventListener('touchend', e => {
+    let touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) goToSlide(currentSlide + 1);
+    if (touchEndX - touchStartX > 50) goToSlide(currentSlide - 1);
+  }, {passive: true});
+
+  // Стрелки клавиатуры
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+    if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+  });
+
+  // Скачивание (Генерируем постер)
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (typeof html2canvas === 'undefined') { alert('Библиотека для скачивания не загрузилась.'); return; }
+    const btn = document.getElementById('downloadBtn');
+    btn.textContent = 'Генерация...';
+    
+    const poster = document.getElementById('download-poster');
+    poster.innerHTML = `
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 16px; font-weight: 700; color: #111;">Design Hire-Readiness Test 2026</div>
+      </div>
+      <div style="background: #f7f7f7; border-radius: 20px; padding: 30px; text-align: center; margin-bottom: 20px;">
+        <div style="font-size: 80px; font-weight: 800; line-height: 1; color: #111;">${percentTotal}</div>
+        <div style="font-size: 16px; color: #666; margin-bottom: 16px;">из 100 баллов</div>
+        <div style="display: inline-block; padding: 8px 24px; border-radius: 99px; background: rgba(252,71,60,0.1); color: #fc473c; font-weight: 700; font-size: 18px;">${grade.name}</div>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <div style="font-size: 14px; font-weight: 700; color: #111; margin-bottom: 8px;">Зарплатный ориентир:</div>
+        <div style="font-size: 14px; color: #444;">РФ: ${salary.ru[grade.key]}</div>
+        <div style="font-size: 14px; color: #444;">Мир: ${salary.intl[grade.key]}</div>
+      </div>
+      <div style="font-size: 12px; color: #999; text-align: center;">пройти тест в тг канале - Gvensy</div>
+    `;
+
+    html2canvas(poster, { backgroundColor: '#ffffff', scale: 2 }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'gvensy-result.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.textContent = '📸 Скачать';
+    }).catch(err => {
+      console.error(err);
+      btn.textContent = 'Ошибка';
+      setTimeout(() => btn.textContent = '📸 Скачать', 2000);
+    });
+  });
+
+  // Шеринг
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    const text = `Я прошел тест Gvensy 2026 и набрал ${percentTotal}/100. Мой уровень: ${grade.name}. А ты?`;
+    if (navigator.share) {
+      navigator.share({ title: 'Design Hire-Readiness Test', text: text, url: window.location.href }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
+        const btn = document.getElementById('shareBtn');
+        const originalText = btn.textContent;
+        btn.textContent = '✅ Скопировано!';
+        setTimeout(() => btn.textContent = originalText, 2000);
+      });
+    }
+  });
+
+  // Рестарт
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    resetState();
+    transitionTo(() => { state.screen = 'intro'; render(); });
+  });
+}
+
+function getConfidenceInsight(gradeKey, confidence) {
+  const expected = { junior: 45, middle: 62, senior: 75, lead: 85 };
+  const exp = expected[gradeKey] || 60;
+  const diff = confidence - exp;
+  if (diff > 15) return { label: "Вы чувствуете себя увереннее, чем показывает оценка", text: "Стоит перепроверить, что в портфолио есть доказательства: измеримые результаты, кейсы с контекстом." };
+  if (diff < -15) return { label: "Вы недооцениваете себя", text: "Оценка выше вашей уверенности. Дело в презентации: соберите кейсы и потренируйтесь рассказывать о своей роли." };
+  return null;
+}
+
+function animateNumber(el, target) {
+  let current = 0;
+  const duration = 1200;
+  const start = performance.now();
+  const step = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    current = Math.round(easeOut * target);
+    el.textContent = current;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function launchConfetti(originX, originY) {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#fc473c', '#111111', '#9a9a9a', '#e5e5e5'];
+  let particles = [];
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: originX, y: originY, vx: (Math.random() - 0.5) * 24,
+      vy: (Math.random() - 0.8) * 24 - 5, size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360, rotSpeed: (Math.random() - 0.5) * 15,
+      gravity: 0.4, drag: 0.98
+    });
+  }
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += p.gravity;
+      p.vx *= p.drag; p.vy *= p.drag; p.rotation += p.rotSpeed;
+      if (p.y < canvas.height + 50) alive = true;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.fillStyle = p.color; ctx.beginPath(); ctx.roundRect(-p.size / 2, -p.size / 2, p.size, p.size, 2);
+      ctx.fill(); ctx.restore();
+    });
+    if (alive) requestAnimationFrame(update);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  update();
+}
+
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+    if (w < 2 * r) r = w / 2;
+    if (h < 2 * r) r = h / 2;
+    this.beginPath(); this.moveTo(x+r, y);
+    this.arcTo(x+w, y,   x+w, y+h, r); this.arcTo(x+w, y+h, x,   y+h, r);
+    this.arcTo(x,   y+h, x,   y,   r); this.arcTo(x,   y,   x+w, y,   r);
+    this.closePath(); return this;
+  };
+}
+
+try { render(); } catch (e) {
+  console.error(e);
+  app.innerHTML = `<div style="padding: 40px; text-align: center;"><h2>Что-то пошло не так :(</h2><p>Обновите страницу.</p><button onclick="window.location.reload()" style="padding: 10px; margin-top: 20px;">Обновить</button></div>`;
+}
+</script>
+</body>
+</html>
